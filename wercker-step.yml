@@ -15,7 +15,10 @@ properties:
     required: true
   version:
     type: string
-    required: true
+    required: false
+  versionFilePath:
+    type: string
+    required: false
   jsonKeyfile:
     type: string
     required: true

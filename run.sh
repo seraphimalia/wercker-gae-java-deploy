@@ -12,16 +12,20 @@ main() {
 		fail "gae-java-deploy: module argument cannot be empty"
 	fi
 
+	if [ -z "$WERCKER_GAE_JAVA_DEPLOY_BUILDTARGETFOLDER" ]; then
+		fail "gae-java-deploy: buildTargetFolder argument cannot be empty"
+	fi
+
+	if [ ! -z "$WERCKER_GAE_JAVA_DEPLOY_VERSIONFILEPATH" ] && [ -f "$WERCKER_SOURCE_DIR/$WERCKER_GAE_JAVA_DEPLOY_BUILDTARGETFOLDER$WERCKER_GAE_JAVA_DEPLOY_VERSIONFILEPATH" ]; then
+		source $WERCKER_SOURCE_DIR/$WERCKER_GAE_JAVA_DEPLOY_BUILDTARGETFOLDER$WERCKER_GAE_JAVA_DEPLOY_VERSIONFILEPATH
+	fi
+
 	if [ -z "$WERCKER_GAE_JAVA_DEPLOY_VERSION" ]; then
 		fail "gae-java-deploy: version argument cannot be empty"
 	fi
 
 	if [ -z "$WERCKER_GAE_JAVA_DEPLOY_JSONKEYFILE" ]; then
 		fail "gae-java-deploy: jsonKeyfile argument cannot be empty"
-	fi
-
-	if [ -z "$WERCKER_GAE_JAVA_DEPLOY_BUILDTARGETFOLDER" ]; then
-		fail "gae-java-deploy: buildTargetFolder argument cannot be empty"
 	fi
 
 	# Command
